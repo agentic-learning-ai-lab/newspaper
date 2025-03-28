@@ -218,10 +218,15 @@ class ContentExtractor(object):
              'content': 'datetime'},
             {'attribute': 'name', 'value': 'publish_date',
              'content': 'content'},
+            {'tag': 'time', 'attribute': 'class', 'value': 'timeStamp', 'content':
+             'datetime'},
+            {'tag': 'time', 'attribute': None, 'value': None, 'content': 'datetime'}
         ]
         for known_meta_tag in PUBLISH_DATE_TAGS:
+            tag = known_meta_tag['tag'] if 'tag' in known_meta_tag else None
             meta_tags = self.parser.getElementsByTag(
                 doc,
+                tag=tag,
                 attr=known_meta_tag['attribute'],
                 value=known_meta_tag['value'])
             if meta_tags:
